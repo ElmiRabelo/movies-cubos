@@ -20,6 +20,6 @@ export const posterSizes = {
 };
 
 //obtem imagem combinando informações das apis
-export const getImage = (baseUrl = baseImgUrl, imgSize, imageUrl) => {
-  return `${baseUrl + imgSize + imageUrl}`;
+export const getImage = (imgSize, imageUrl) => {
+  return `${baseImgUrl + imgSize + imageUrl}`;
 };

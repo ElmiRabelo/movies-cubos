@@ -1,7 +1,15 @@
 import React from "react";
+import { GlobalStyle } from "./styles/global";
+
+import Header from "./components/header/header.component";
 
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <div>
+      <GlobalStyle />
+      <Header title="Movies" />
+    </div>
+  );
 }
 
 export default App;

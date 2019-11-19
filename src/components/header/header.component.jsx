@@ -1,18 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-import { Container, Title } from "./header.styles";
+import TitleContainer from "../title-container/title-container.component";
+import CustomTitle from "../custom-title/custom-title.component";
 
-const Header = ({ title }) => {
-  return (
-    <Container>
-      <Title>{title}</Title>
-    </Container>
-  );
-};
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired
-};
+const Header = () => (
+  <TitleContainer height="70px" padding="15px" position="center">
+    <CustomTitle title="Movies" size="40px" />
+  </TitleContainer>
+);
 
 export default Header;

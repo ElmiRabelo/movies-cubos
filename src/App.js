@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <GlobalStyle />
-      <Header title="Movies" />
+      <Header />
     </div>
   );
 }

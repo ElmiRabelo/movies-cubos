@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  height: 100%;
+export const PosterContainer = styled.div`
   width: 100%;
 
   img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    min-height: 100%;
     object-fit: cover;
   }
 `;

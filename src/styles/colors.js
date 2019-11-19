@@ -6,5 +6,6 @@ export default {
   greyLight: "#ebebeb",
   light: "#f2f2f2",
   dark: "#555",
-  darker: "#222"
+  darker: "#222",
+  fade: "#969696"
 };

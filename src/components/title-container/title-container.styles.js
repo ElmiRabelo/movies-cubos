@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: ${props => props.position};
   align-items: center;
-  min-height: ${props => props.height};
+  height: 100%;
   width: 100%;
   padding: ${props => props.padding};
   background-color: ${props => (props.bgLight ? colors.grey : colors.primary)};

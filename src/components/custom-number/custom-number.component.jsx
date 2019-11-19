@@ -1,21 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import { Container, ContentContainer } from "./custom-number.styles";
+import { FormatVote } from "../../utils/movieUtils";
+import { NumberContainer, ContentContainer } from "./custom-number.styles";
 
 const CustomNumber = ({ number, textSize, width, isVote }) => {
-  //Formata o vote_average da Api para uma string com % no final
-  const voteFormat = vote => {
-    const voteFormated = vote.toString().replace(".", "") + "%";
-    return voteFormated;
-  };
-
   return (
-    <Container width={width}>
+    <NumberContainer width={width}>
       <ContentContainer textSize={textSize}>
-        <p>{isVote ? voteFormat(number) : number}</p>
+        <p>{isVote ? FormatVote(number) : number}</p>
       </ContentContainer>
-    </Container>
+    </NumberContainer>
   );
 };
 

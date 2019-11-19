@@ -11,7 +11,7 @@ export const Container = styled.div`
   border: 1px solid ${colors.primary};
   border-radius: 15px;
   margin-right: 10px;
-
+  background-color: ${colors.white};
   p {
     color: ${colors.primary};
   }

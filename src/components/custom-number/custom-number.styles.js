@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 import colors from "../../styles/colors";
 
-export const Container = styled.div`
+export const NumberContainer = styled.div`
   height: ${props => props.width};
-  max-width: ${props => props.width};
+  min-width: ${props => props.width};
   border-radius: 50%;
   background-color: ${colors.primary};
   padding: 2px;
@@ -19,6 +19,7 @@ export const ContentContainer = styled.div`
   align-items: center;
   border: 4px solid ${colors.secondary};
   p {
+    font-family: "Abel", sans-serif;
     color: ${colors.secondary};
     font-size: ${props => props.textSize};
   }

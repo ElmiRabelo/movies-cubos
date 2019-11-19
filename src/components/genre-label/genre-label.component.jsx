@@ -9,4 +9,8 @@ const GenreLabel = ({ genre }) => (
   </Container>
 );
 
+GenreLabel.propTypes = {
+  genre: PropTypes.string.isRequired
+};
+
 export default GenreLabel;

@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 
 import { getImage } from "../../utils/imageUtils";
 
-import { Container } from "./movie-poster.styles";
+import { PosterContainer } from "./movie-poster.styles";
 
 const MoviePoster = ({ posterUrl, posterSize, title }) => {
   return (
-    <Container>
+    <PosterContainer>
       <img src={getImage(posterSize, posterUrl)} alt={`${title} poster`} />
-    </Container>
+    </PosterContainer>
   );
 };
 

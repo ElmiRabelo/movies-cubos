@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+import colors from "../../styles/colors";
+
+export const Container = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
   min-height: 70px;
   width: 100%;
+  background-color: ${colors.primary};
 `;

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { FormatYear } from "../../utils/movieUtils";
+import { formatYear } from "../../utils/movieUtils";
 import { Year } from "./release-year.styles";
 
 const ReleaseYear = ({ release_year }) => {
-  return <Year>{FormatYear(release_year)}</Year>;
+  return <Year>{formatYear(release_year)}</Year>;
 };
 
 ReleaseYear.propTypes = {

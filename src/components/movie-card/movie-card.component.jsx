@@ -14,7 +14,8 @@ const MovieCard = ({
   poster_path,
   overview,
   vote_average,
-  release_date
+  release_date,
+  genre_ids
 }) => {
   return (
     <Container id={id}>
@@ -28,11 +29,19 @@ const MovieCard = ({
         overview={overview}
         release_date={release_date}
         vote_average={vote_average}
+        genre_ids={genre_ids}
       />
     </Container>
   );
 };
 
-MovieCard.propTypes = {};
+MovieCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired
+};
 
 export default MovieCard;

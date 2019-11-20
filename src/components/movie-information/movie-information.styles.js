@@ -6,7 +6,7 @@ import { Year } from "../release-year/release-year.styles";
 import colors from "../../styles/colors";
 
 export const Container = styled.div`
-  max-height: 300px;
+  max-height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,8 +21,11 @@ export const Container = styled.div`
   }
 `;
 
-export const Header = styled.div`
+export const Header = styled.header`
+  display: flex;
   width: 100%;
+  padding: 1.9rem 0 0.2rem 6rem;
+  background-color: ${colors.primary};
 `;
 
 export const Content = styled.div`

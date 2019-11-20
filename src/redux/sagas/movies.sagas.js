@@ -5,11 +5,24 @@ import { Creators as MoviesActions } from "../ducks/movies.ducks";
 
 export default function* getMovies(action) {
   try {
-    const response = yield call(
+    const { inputValue, genreId } = action.payload;
+    //busca filme por nome
+    const responseSearch = yield call(
       api.get,
-      `/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${action.payload}&language=pt-BR&region=br`
+      `/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${inputValue}&language=pt-BR&region=br`
     );
-    yield put(MoviesActions.getMovieSuccess(response.data.results));
+    //busca filme por genero
+    const responseGenre = yield call(
+      api.get,
+      `/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genreId}`
+    );
+
+    const response = yield [
+      ...responseGenre.data.results,
+      ...responseSearch.data.results
+    ];
+
+    yield put(MoviesActions.getMovieSuccess(response));
   } catch (err) {
     console.tron.log("Algo deu errado", err);
   }

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 export const NumberContainer = styled.div`
-  height: ${props => props.width};
-  min-width: ${props => props.width};
+  height: 70px;
+  min-width: 70px;
   border-radius: 50%;
   background-color: ${colors.primary};
   padding: 2px;
@@ -21,6 +21,6 @@ export const ContentContainer = styled.div`
   p {
     font-family: "Abel", sans-serif;
     color: ${colors.secondary};
-    font-size: ${props => props.textSize};
+    font-size: 24px;
   }
 `;

@@ -8,15 +8,27 @@ import { posterSizes } from "../../utils/imageUtils";
 
 import { Container } from "./movie-card.styles";
 
-const MovieCard = () => {
+const MovieCard = ({
+  id,
+  title,
+  poster_path,
+  overview,
+  vote_average,
+  release_date
+}) => {
   return (
-    <Container>
+    <Container id={id}>
       <MoviePoster
-        posterUrl="/bLpIFiuWF1bKnBqi7LqnJcLHtN.jpg"
+        posterUrl={poster_path}
         posterSize={posterSizes.medium}
-        title="Thor"
+        title={title}
       />
-      <MovieInformation />
+      <MovieInformation
+        title={title}
+        overview={overview}
+        release_date={release_date}
+        vote_average={vote_average}
+      />
     </Container>
   );
 };

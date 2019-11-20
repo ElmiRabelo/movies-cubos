@@ -2,14 +2,13 @@ import React from "react";
 import { GlobalStyle } from "./styles/global";
 
 import Header from "./components/header/header.component";
-import MovieCard from "./components/movie-card/movie-card.component";
-
+import Search from "./pages/Search/Search.page";
 function App() {
   return (
     <div>
       <GlobalStyle />
       <Header />
-      <MovieCard />
+      <Search />
     </div>
   );
 }

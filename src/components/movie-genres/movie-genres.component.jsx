@@ -16,6 +16,11 @@ const MovieGenres = ({ genre_ids, genres }) => (
   </Container>
 );
 
+MovieGenres.propTypes = {
+  genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired,
+  genres: PropTypes.array.isRequired
+};
+
 const mapStateToProps = state => ({
   genres: state.genres.data
 });

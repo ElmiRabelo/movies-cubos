@@ -36,7 +36,8 @@ MoviesOverview.propTypes = {
         vote_average: PropTypes.number,
         title: PropTypes.string,
         release_date: PropTypes.string,
-        first_air_date: PropTypes.string
+        first_air_date: PropTypes.string,
+        genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired
       })
     ),
     loading: PropTypes.bool

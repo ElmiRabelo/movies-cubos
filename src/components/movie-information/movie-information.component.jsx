@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
@@ -28,6 +29,14 @@ const MovieInformation = ({
       </Content>
     </Container>
   );
+};
+
+MovieInformation.propTypes = {
+  title: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 
 export default MovieInformation;

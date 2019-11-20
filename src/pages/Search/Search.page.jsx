@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -10,9 +11,13 @@ import MoviesOverview from "../../components/movies-overview/movies-overview.com
 import { Container } from "./Search.styles";
 
 class Search extends React.Component {
-  // componentDidMount() {
-  //   this.props.getRequest();
-  // }
+  static propTypes = {
+    getRequest: PropTypes.func.isRequired
+  };
+
+  componentDidMount() {
+    this.props.getRequest();
+  }
 
   render() {
     return (

@@ -6,6 +6,7 @@ export const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
   letter-spacing: -1px;
+  padding-bottom: 10px;
   width: 100%;
   color: ${props => (props.darker ? colors.primary : colors.secondary)};
   border-bottom: ${props =>

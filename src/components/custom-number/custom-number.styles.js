@@ -3,8 +3,7 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 export const NumberContainer = styled.div`
-  height: 70px;
-  min-width: 70px;
+  width: 70px;
   border-radius: 50%;
   background-color: ${colors.primary};
   padding: 2px;

@@ -18,8 +18,7 @@ const InformationDetails = ({
 
   const traduzir = async () => {
     translate.engine = "yandex";
-    translate.key =
-      "trnsl.1.1.20191121T154717Z.f7c48494362e08c2.a8686fa716b64b11db6bb915f55d6ecf4fd47677";
+    translate.key = process.env.REACT_APP_YANDEX_KEY;
     const textoStatus = await translate(status, { to: "pt" });
     const textoIdioma = await translate(language, { to: "pt" });
     setSituacao(textoStatus);

@@ -9,7 +9,7 @@ export const Container = styled.nav`
   width: 100%;
   padding: 20px;
   ${NumberContainer} {
-    min-width: 50px;
+    width: 50px;
     height: 50px;
     margin: 0 10px;
     &:hover {

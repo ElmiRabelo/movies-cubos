@@ -18,9 +18,9 @@ const MovieInformation = ({
 }) => {
   return (
     <Container>
-      <CustomNumber number={vote_average} isVote />
       <Header>
         <CustomTitle title={title} />
+        <CustomNumber number={vote_average} isVote />
       </Header>
       <Content>
         <ReleaseYear release_year={release_date} />

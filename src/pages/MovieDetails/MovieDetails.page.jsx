@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import CustomTitle from "../../components/custom-title/custom-title.component";
 import ReleaseYear from "../../components/release-year/release-year.component";

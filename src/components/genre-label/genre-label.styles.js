@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: center;
   max-height: 26px;
   padding: 10px;
+  margin: 10px 0;
   border: 1px solid ${colors.primary};
   border-radius: 15px;
   margin-right: 10px;

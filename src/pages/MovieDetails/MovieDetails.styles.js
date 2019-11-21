@@ -6,7 +6,10 @@ import { GenresContainer } from "../../components/movie-genres/movie-genres.styl
 import colors from "../../styles/colors";
 
 export const Container = styled.div`
-  padding: 45px;
+  padding: 15px;
+  @media screen and (min-width: 900px) {
+    padding: 45px;
+  }
 `;
 
 export const MovieContainer = styled.main`
@@ -56,6 +59,7 @@ export const InformationContainer = styled.section`
   article {
     width: 100%;
     margin-top: 25px;
+    padding-right: 10px;
   }
 
   @media screen and (min-width: 900px) {
@@ -69,6 +73,10 @@ export const ImageContainer = styled.aside`
   width: 27%;
   div {
     height: 100%;
+    img {
+      height: auto;
+      min-height: 100%;
+    }
   }
   @media screen and (min-width: 900px) {
     display: block;

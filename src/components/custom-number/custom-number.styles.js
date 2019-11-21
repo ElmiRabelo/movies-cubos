@@ -4,6 +4,7 @@ import colors from "../../styles/colors";
 
 export const NumberContainer = styled.div`
   width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-color: ${colors.primary};
   padding: 2px;

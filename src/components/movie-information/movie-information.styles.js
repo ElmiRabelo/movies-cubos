@@ -12,22 +12,45 @@ export const Container = styled.div`
   flex-direction: column;
   position: relative;
   background-color: ${colors.greyLight};
-
-  ${NumberContainer} {
-    position: absolute;
-    top: 35px;
-    left: 15px;
-    z-index: 9;
-  }
 `;
 
 export const Header = styled.header`
   display: flex;
+  align-items: center;
   width: 100%;
-  padding: 1.9rem 0 0.2rem 6rem;
+  padding: 10px 15px;
   background-color: ${colors.primary};
   h1 {
-    font-size: 35px;
+    font-size: 24px;
+    padding-bottom: 0;
+  }
+
+  ${NumberContainer} {
+    width: 45px;
+    height: 45px;
+    p {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    padding: 1.9rem 0 0.2rem 6rem;
+    align-items: flex-end;
+    h1 {
+      font-size: 35px;
+    }
+
+    ${NumberContainer} {
+      position: absolute;
+      top: 45px;
+      left: 15px;
+      z-index: 9;
+      width: 70px;
+      height: 70px;
+      p {
+        font-size: 24px;
+      }
+    }
   }
 `;
 

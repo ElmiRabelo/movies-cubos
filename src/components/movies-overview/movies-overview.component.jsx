@@ -2,15 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as PaginationActions } from "../../redux/ducks/pagination.ducks";
 
 import MovieCard from "../movie-card/movie-card.component";
+import Pagination from "../pagination/pagination.component";
+import Loading from "../loading/loading.component";
 
 import { Container } from "./movies-overview.styles";
 
-const MoviesOverview = ({ movies }) => {
+const MoviesOverview = ({
+  movies,
+  pagination: { currentPage, moviesPerPage }
+}) => {
+  // //Obter card atual
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovie = movies.data.slice(indexOfFirstMovie, indexOfLastMovie);
+
+  if (movies.loading) {
+    return <Loading />;
+  }
   return (
     <Container>
-      {movies.data.map(movie => (
+      {currentMovie.map(movie => (
         <MovieCard
           key={movie.id}
           id={movie.id}
@@ -22,6 +37,7 @@ const MoviesOverview = ({ movies }) => {
           genre_ids={movie.genre_ids}
         />
       ))}
+      <Pagination totalMovies={movies.data.length} />
     </Container>
   );
 };
@@ -41,11 +57,19 @@ MoviesOverview.propTypes = {
       })
     ),
     loading: PropTypes.bool
+  }).isRequired,
+  pagination: PropTypes.shape({
+    currentPage: PropTypes.number,
+    moviesPerPage: PropTypes.number
   }).isRequired
 };
 
 const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  pagination: state.pagination
 });
 
-export default connect(mapStateToProps)(MoviesOverview);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(PaginationActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesOverview);

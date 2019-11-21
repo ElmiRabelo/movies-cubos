@@ -7,5 +7,6 @@ export default {
   light: "#f2f2f2",
   dark: "#555",
   darker: "#222",
-  fade: "#969696"
+  fade: "#969696",
+  placeholder: "#93B3C7"
 };

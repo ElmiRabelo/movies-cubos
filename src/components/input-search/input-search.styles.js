@@ -7,17 +7,19 @@ export const Container = styled.div`
   height: 45px;
   margin: 25px 0;
   input {
-    padding: 10px 25px;
+    padding: 15px 25px;
     width: 100%;
     height: 100%;
+    font-family: "Abel", sans-serif;
+    font-size: 16px;
     border-radius: 25px;
     background-color: ${colors.greyLight};
 
     &::placeholder {
-      color: ${colors.primary};
+      color: ${colors.placeholder};
     }
     &::-ms-input-placeholder {
-      color: ${colors.primary};
+      color: ${colors.placeholder};
     }
   }
 `;

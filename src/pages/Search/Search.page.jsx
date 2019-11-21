@@ -7,12 +7,16 @@ import { Creators as GenresActions } from "../../redux/ducks/genres.ducks";
 
 import InputSearch from "../../components/input-search/input-search.component";
 import MoviesOverview from "../../components/movies-overview/movies-overview.component";
+import Loading from "../../components/loading/loading.component";
 
 import { Container } from "./Search.styles";
 
 class Search extends React.Component {
   static propTypes = {
-    getRequest: PropTypes.func.isRequired
+    getRequest: PropTypes.func.isRequired,
+    genres: PropTypes.shape({
+      loading: PropTypes.bool
+    }).isRequired
   };
 
   componentDidMount() {
@@ -23,7 +27,7 @@ class Search extends React.Component {
     return (
       <Container>
         <InputSearch placeholder="Busque um filme por nome, ou gênero..." />
-        <MoviesOverview />
+        {this.props.genres.loading ? <Loading /> : <MoviesOverview />}
       </Container>
     );
   }

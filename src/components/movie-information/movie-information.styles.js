@@ -26,6 +26,9 @@ export const Header = styled.header`
   width: 100%;
   padding: 1.9rem 0 0.2rem 6rem;
   background-color: ${colors.primary};
+  h1 {
+    font-size: 35px;
+  }
 `;
 
 export const Content = styled.div`

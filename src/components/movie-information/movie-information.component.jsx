@@ -20,7 +20,7 @@ const MovieInformation = ({
     <Container>
       <CustomNumber number={vote_average} isVote />
       <Header>
-        <CustomTitle title={title} fontSize="35px" />
+        <CustomTitle title={title} />
       </Header>
       <Content>
         <ReleaseYear release_year={release_date} />

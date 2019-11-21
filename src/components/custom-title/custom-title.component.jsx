@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 
 import { Title } from "./custom-title.styles";
 
-const CustomTitle = ({ title, darker, fontSize }) => (
-  <Title darker={darker} fontSize={fontSize}>
+const CustomTitle = ({ title, darker, hasBorder }) => (
+  <Title darker={darker} hasBorder={hasBorder}>
     {title}
   </Title>
 );
 
 CustomTitle.propTypes = {
   title: PropTypes.string.isRequired,
-  fontSize: PropTypes.string.isRequired,
-  darker: PropTypes.bool
+  darker: PropTypes.bool,
+  hasBorder: PropTypes.bool
 };
 
 export default CustomTitle;

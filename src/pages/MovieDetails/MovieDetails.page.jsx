@@ -19,7 +19,6 @@ class MovieDetails extends React.Component {
   render() {
     const { videos } = this.props.movieDetails.data;
     const { loading, data } = this.props.movieDetails;
-    console.tron.log(this.props.movieDetails.data);
     return (
       <Fragment>
         {loading ? (

@@ -14,8 +14,7 @@ export default function* getMovieDetails(action) {
       `/movie/${action.payload}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=pt-BR&append_to_response=videos`
     );
     const originalIdioma = yield getOriginalLanguage(response.data);
-    const data = (response.data.idioma = originalIdioma);
-    console.tron.log(data);
+    yield (response.data.idioma = originalIdioma);
     yield put(MovieDetailsActions.getSuccess(response.data));
   } catch (err) {
     yield put(

@@ -21,4 +21,11 @@ export const GlobalStyle = createGlobalStyle`
     
     font-family: 'Abel', sans-serif;
   }
+  a {
+    text-decoration: none;
+    color: ${colors.dark};
+    &:visited {
+      color: ${colors.dark};
+    }
+  }
 `;

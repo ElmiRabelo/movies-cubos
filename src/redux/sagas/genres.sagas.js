@@ -9,7 +9,6 @@ export default function* getGenres() {
       api.get,
       `/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=pt-BR`
     );
-    console.tron.log(response.data.genres);
     yield put(GenresActions.getSuccess(response.data.genres));
   } catch (err) {
     console.tron.log("Algo deu errado", err);

@@ -65,5 +65,21 @@ export const makeDecimal = number => {
     result = result.substring(1, result.length); // Remove first dot, if have.
   if (!isFinite(result.substring(0, 1)))
     result = result.substring(1, result.length); // Remove first dot, if have.
+  if (!isFinite(result.substring(0, 1)))
+    result = result.substring(1, result.length); // Remove first dot, if have.
   return result;
+};
+
+//obter idioma original em String extendida. ex: en para English
+export const getOriginalLanguage = (original, spokenLanguages) => {
+  const spokenName = spokenLanguages.find(
+    language => original === language.iso_639_1
+  );
+  return spokenName.name;
+};
+
+//obter array de ids de generos
+export const getGenresIds = genres => {
+  const genresIds = genres.map(genre => genre.id);
+  return genresIds;
 };

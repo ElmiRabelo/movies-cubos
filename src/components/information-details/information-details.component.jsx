@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import translate from "translate";
 import CustomTitle from "../custom-title/custom-title.component";
 
+import { makeDecimal } from "../../utils/movieUtils";
+
 import { Container, Item } from "./information-details.styles";
 
 const InformationDetails = ({
@@ -16,6 +18,7 @@ const InformationDetails = ({
   const [idioma, setIdioma] = useState("...");
   const [situacao, setSituacao] = useState("");
 
+  //faz a tradução de texto em inglês para portugues
   const traduzir = async () => {
     translate.engine = "yandex";
     translate.key = process.env.REACT_APP_YANDEX_KEY;

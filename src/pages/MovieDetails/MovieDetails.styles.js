@@ -88,6 +88,9 @@ export const ExtraContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${GenresContainer} {
+    justify-content: center;
+  }
   ${NumberContainer} {
     align-self: center;
     margin: 15px;
@@ -114,6 +117,7 @@ export const ExtraContainer = styled.div`
     margin: 25px 0;
     ${GenresContainer} {
       align-items: flex-start;
+      justify-content: flex-start;
     }
     ${NumberContainer} {
       margin: none;
@@ -127,5 +131,13 @@ export const ExtraContainer = styled.div`
         font-size: 38px;
       }
     }
+  }
+`;
+
+export const TrailerContainer = styled.div`
+  min-width: 100%;
+  height: 300px;
+  @media screen and (min-width: 765px) {
+    height: 542px;
   }
 `;

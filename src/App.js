@@ -1,16 +1,14 @@
 import React from "react";
 import { GlobalStyle } from "./styles/global";
 
+import Routes from "./routes/routes";
 import Header from "./components/header/header.component";
-import Search from "./pages/Search/Search.page";
-// import MovieDetails from "./pages/MovieDetails/MovieDetails.page";
 function App() {
   return (
     <div>
       <GlobalStyle />
       <Header />
-      <Search />
-      {/* <MovieDetails /> */}
+      <Routes />
     </div>
   );
 }

@@ -25,6 +25,7 @@ const MovieCard = ({
         title={title}
       />
       <MovieInformation
+        id={id}
         title={title}
         overview={overview}
         release_date={release_date}

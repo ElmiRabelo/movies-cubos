@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { Link } from "react-router-dom";
+
 import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
 import ReleaseYear from "../release-year/release-year.component";
@@ -10,6 +12,7 @@ import CustomTitle from "../custom-title/custom-title.component";
 import { Container, Header, Content } from "./movie-information.styles";
 
 const MovieInformation = ({
+  id,
   title,
   overview,
   release_date,
@@ -19,7 +22,9 @@ const MovieInformation = ({
   return (
     <Container>
       <Header>
-        <CustomTitle title={title} />
+        <Link to={`/movie/${id}`}>
+          <CustomTitle title={title} />
+        </Link>
         <CustomNumber number={vote_average} isVote />
       </Header>
       <Content>

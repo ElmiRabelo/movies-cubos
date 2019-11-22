@@ -11,6 +11,7 @@ import Loading from "../loading/loading.component";
 
 import { Container } from "./movies-overview.styles";
 
+//reneriza os MovieCards em conjunto com a paginação dos resultados;
 const MoviesOverview = ({
   movies,
   pagination: { currentPage, moviesPerPage }
@@ -26,16 +27,7 @@ const MoviesOverview = ({
   return (
     <Container>
       {currentMovie.map(movie => (
-        <MovieCard
-          key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          poster_path={movie.poster_path}
-          overview={movie.overview}
-          vote_average={movie.vote_average}
-          release_date={movie.release_date}
-          genre_ids={movie.genre_ids}
-        />
+        <MovieCard key={movie.id} movie={movie} />
       ))}
       <Pagination totalMovies={movies.data.length} />
     </Container>
@@ -46,14 +38,7 @@ MoviesOverview.propTypes = {
   movies: PropTypes.shape({
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        poster_path: PropTypes.string,
-        overview: PropTypes.string,
-        vote_average: PropTypes.number,
-        title: PropTypes.string,
-        release_date: PropTypes.string,
-        first_air_date: PropTypes.string,
-        genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired
+        id: PropTypes.number
       })
     ),
     loading: PropTypes.bool

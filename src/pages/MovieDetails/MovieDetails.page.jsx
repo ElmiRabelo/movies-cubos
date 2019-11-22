@@ -1,112 +1,43 @@
-import React, { useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
+//Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as MovieDetailsActions } from "../../redux/ducks/movieDetails.ducks";
 
-import CustomTitle from "../../components/custom-title/custom-title.component";
-import ReleaseYear from "../../components/release-year/release-year.component";
-import MovieSinopse from "../../components/movie-sinopse/movie-sinopse.component";
-import MoviePoster from "../../components/movie-poster/movie-poster.component";
-import InformationDetails from "../../components/information-details/information-details.component";
-import CustomNumber from "../../components/custom-number/custom-number.component";
-import MovieGenres from "../../components/movie-genres/movie-genres.component";
 import Loading from "../../components/loading/loading.component";
+import CardDetails from "../../components/card-details/card-details.component";
 
-import {
-  makeDecimal,
-  convertToHour,
-  getOriginalLanguage,
-  getGenresIds
-} from "../../utils/movieUtils";
+import { Container, TrailerContainer } from "./MovieDetails.styles";
 
-import {
-  Container,
-  MovieContainer,
-  Header,
-  ContentContainer,
-  InformationContainer,
-  ImageContainer,
-  ExtraContainer,
-  TrailerContainer
-} from "./MovieDetails.styles";
-
+//Pagina responsavel por renderizar card-details com informações do filme, como o trailer. é feito o request das informações do filme, obtendo a id do filme atraves da url
 class MovieDetails extends React.Component {
   componentDidMount() {
     this.props.getRequest(this.props.match.params.id);
   }
   render() {
-    const {
-      title,
-      release_date,
-      overview,
-      status,
-      runtime,
-      budget,
-      revenue,
-      vote_average,
-      poster_path,
-      videos,
-      original_language,
-      spoken_languages,
-      genres
-    } = this.props.movieDetails.data;
-    const profit = budget - revenue;
+    const { videos } = this.props.movieDetails.data;
+    const { loading, data } = this.props.movieDetails;
+    console.tron.log(this.props.movieDetails.data);
     return (
       <Fragment>
-        {this.props.movieDetails.loading ? (
+        {loading ? (
           <Loading />
         ) : (
           <Container>
-            <MovieContainer>
-              <Header>
-                <CustomTitle title={title} darker />
-                <ReleaseYear release_year={release_date} />
-              </Header>
-              <ContentContainer>
-                <InformationContainer>
-                  <article>
-                    <CustomTitle title="Sinopse" darker hasBorder />
-                    <MovieSinopse overview={overview} />
-                  </article>
-                  <article>
-                    <CustomTitle title="Informações" darker hasBorder />
-                    <InformationDetails
-                      status={status}
-                      language={getOriginalLanguage(
-                        original_language,
-                        spoken_languages
-                      )}
-                      runtime={convertToHour(runtime)}
-                      budget={makeDecimal(budget)}
-                      revenue={makeDecimal(revenue)}
-                      profit={makeDecimal(profit)}
-                    />
-                  </article>
-                  <ExtraContainer>
-                    <MovieGenres genre_ids={getGenresIds(genres)} />
-                    <CustomNumber number={vote_average} isVote />
-                  </ExtraContainer>
-                </InformationContainer>
-                <ImageContainer>
-                  <MoviePoster
-                    posterUrl={poster_path}
-                    posterSize="w342"
-                    title={title}
-                  />
-                </ImageContainer>
-              </ContentContainer>
-            </MovieContainer>
+            <CardDetails movieDetails={data} />
 
             {videos.results.length > 0 && (
               <TrailerContainer>
                 <iframe
+                  title="Movie Trailer"
                   width="100%"
                   height="100%"
                   src={`https://www.youtube.com/embed/${videos.results[0].key}`}
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </TrailerContainer>
             )}
@@ -116,6 +47,14 @@ class MovieDetails extends React.Component {
     );
   }
 }
+
+MovieDetails.propTypes = {
+  getRequest: PropTypes.func.isRequired,
+  movieDetails: PropTypes.shape({
+    loading: PropTypes.bool,
+    data: PropTypes.object
+  }).isRequired
+};
 
 const mapStateToProps = state => ({
   movieDetails: state.movieDetails

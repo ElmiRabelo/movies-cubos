@@ -5,13 +5,14 @@ import { connect } from "react-redux";
 
 import GenreLabel from "../genre-label/genre-label.component";
 
-import { convertGenreToString } from "../../utils/movieUtils";
+import { convertGenreIdToString } from "../../utils/movieUtils";
 import { GenresContainer } from "./movie-genres.styles";
 
+//responsavel por renderizar uma coleção de genre labels
 const MovieGenres = ({ genre_ids, genres }) => (
   <GenresContainer>
     {genre_ids.map(id => (
-      <GenreLabel key={id} genre={convertGenreToString(id, genres)} />
+      <GenreLabel key={id} genre={convertGenreIdToString(id, genres)} />
     ))}
   </GenresContainer>
 );

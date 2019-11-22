@@ -9,13 +9,15 @@ import { posterSizes } from "../../utils/imageUtils";
 import { Container } from "./movie-card.styles";
 
 const MovieCard = ({
-  id,
-  title,
-  poster_path,
-  overview,
-  vote_average,
-  release_date,
-  genre_ids
+  movie: {
+    id,
+    title,
+    poster_path,
+    overview,
+    vote_average,
+    release_date,
+    genre_ids
+  }
 }) => {
   return (
     <Container id={id}>
@@ -37,13 +39,15 @@ const MovieCard = ({
 };
 
 MovieCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  poster_path: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  vote_average: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
-  genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    poster_path: PropTypes.string,
+    overview: PropTypes.string,
+    vote_average: PropTypes.number,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    genre_ids: PropTypes.arrayOf(PropTypes.number)
+  })
 };
 
 export default MovieCard;

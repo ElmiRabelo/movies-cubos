@@ -31,9 +31,15 @@ export const convertSearchToGenre = (search, genres) => {
 };
 
 //converte id de genero para o nome(string format)
-export const convertGenreToString = (id, genres) => {
-  const convertedGenre = genres.filter(genre => id === genre.id);
+export const convertGenreIdToString = (id, state) => {
+  const convertedGenre = state.filter(genre => id === genre.id);
   return convertedGenre[0].name;
+};
+
+//obter array de ids de generos quando generos são passados como um array de objetos com id e name
+export const getGenresIds = genres => {
+  const genresIds = genres.map(genre => genre.id);
+  return genresIds;
 };
 
 //converte o runtime em minutes para hora, em formato de apresentação
@@ -48,11 +54,11 @@ export const convertToHour = time => {
 
 //converte os numeros de orçamento, receita e lucro em decimais
 export const makeDecimal = number => {
-  number = number + ""; // Convert number to string if not
+  number = number + ""; // Converte o número para string
   number = number
     .split("")
     .reverse()
-    .join(""); //Reverse string
+    .join(""); // Reverte
   let result = "";
   for (let i = 0; i <= number.length; i += 3) {
     result = result + number.substring(i, i + 3) + ".";
@@ -60,13 +66,13 @@ export const makeDecimal = number => {
   result = result
     .split("")
     .reverse()
-    .join(""); //Reverse again
+    .join(""); //Reverte novamente
   if (!isFinite(result.substring(0, 1)))
-    result = result.substring(1, result.length); // Remove first dot, if have.
+    result = result.substring(1, result.length); // Remove o primeiro ponto, se tiver.
   if (!isFinite(result.substring(0, 1)))
-    result = result.substring(1, result.length); // Remove first dot, if have.
+    result = result.substring(1, result.length); // Remove o primeiro ponto, se tiver.
   if (!isFinite(result.substring(0, 1)))
-    result = result.substring(1, result.length); // Remove first dot, if have.
+    result = result.substring(1, result.length); // Remove o primeiro ponto, se tiver.
   return result;
 };
 
@@ -76,10 +82,4 @@ export const getOriginalLanguage = (original, spokenLanguages) => {
     language => original === language.iso_639_1
   );
   return spokenName.name;
-};
-
-//obter array de ids de generos
-export const getGenresIds = genres => {
-  const genresIds = genres.map(genre => genre.id);
-  return genresIds;
 };

@@ -17,6 +17,7 @@ export const Container = styled.div`
 export const Header = styled.header`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: 10px 15px;
   background-color: ${colors.primary};

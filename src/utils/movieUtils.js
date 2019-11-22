@@ -39,8 +39,8 @@ export const convertGenreIdToString = (id, state) => {
 };
 
 //obter array de ids de generos quando generos são passados como um array de objetos com id e name
-export const getGenresIds = genres => {
-  const genresIds = genres.map(genre => genre.id);
+export const getGenresIds = state => {
+  const genresIds = state.data.genres.map(genre => genre.id);
   return genresIds;
 };
 
@@ -94,5 +94,6 @@ export const getOriginalLanguage = data => {
 export const translateInformations = texto => {
   translate.engine = "yandex";
   translate.key = process.env.REACT_APP_YANDEX_KEY;
+
   return translate(texto, { to: "pt" });
 };

@@ -12,19 +12,18 @@ import CardDetails from "../../components/card-details/card-details.component";
 import { Container, TrailerContainer } from "./MovieDetails.styles";
 
 //Pagina responsavel por renderizar card-details com informações do filme, como o trailer. é feito o request das informações do filme, obtendo a id do filme atraves da url
-const MovieDetails = props => {
+const MovieDetails = ({ match, getRequest, movieDetails }) => {
   useEffect(() => {
-    props.getRequest(props.match.params.id);
+    getRequest(match.params.id);
   }, []);
-  const { videos } = props.movieDetails.data;
-  const { loading, data } = props.movieDetails;
+  const { videos } = movieDetails.data;
   return (
     <Fragment>
-      {loading ? (
+      {movieDetails.loading ? (
         <Loading />
       ) : (
         <Container>
-          <CardDetails movieDetails={data} />
+          <CardDetails />
 
           {videos.results.length > 0 && (
             <TrailerContainer>

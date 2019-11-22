@@ -1,14 +1,21 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { getGenresIds } from "../../utils/movieUtils";
+import { connect } from "react-redux";
+
+import {
+  getGenresIds,
+  getOriginalLanguage,
+  translateInformations,
+  makeDecimal,
+  convertToHour
+} from "../../utils/movieUtils";
 import { posterSizes } from "../../utils/imageUtils";
 
 import CustomTitle from "../custom-title/custom-title.component";
 import ReleaseYear from "../release-year/release-year.component";
 import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MoviePoster from "../movie-poster/movie-poster.component";
-import InformationDetails from "../information-details/information-details.component";
 import CustomNumber from "../custom-number/custom-number.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
 
@@ -18,64 +25,105 @@ import {
   ContentContainer,
   InformationContainer,
   ImageContainer,
-  ExtraContainer
+  ExtraContainer,
+  ExtraDetailsContainer,
+  Item
 } from "./card-details.styles";
 
 //renderiza um card com com as informações de um filme em detalhes
-const CardDetails = ({
-  movieDetails: {
-    title,
-    release_date,
-    overview,
-    status,
-    original_language,
-    spoken_languages,
-    runtime,
-    budget,
-    revenue,
-    vote_average,
-    poster_path,
-    genres
+class CardDetails extends React.Component {
+  _isMounted = false;
+  state = {
+    translated: {
+      idioma: "...",
+      situacao: "..."
+    }
+  };
+  async componentDidMount() {
+    const idioma = await translateInformations(this.props.orignalLanguage);
+    const situacao = await translateInformations(
+      this.props.movieDetails.status
+    );
+    this._isMounted = true;
+    if (this._isMounted) {
+      this.setState({ translated: { idioma, situacao } });
+    }
   }
-}) => {
-  return (
-    <MovieContainer>
-      <Header>
-        <CustomTitle title={title} darker />
-        <ReleaseYear release_year={release_date} />
-      </Header>
-      <ContentContainer>
-        <InformationContainer>
-          <article>
-            <CustomTitle title="Sinopse" darker hasBorder />
-            <MovieSinopse overview={overview} />
-          </article>
-          <article>
-            <CustomTitle title="Informações" darker hasBorder />
-            <InformationDetails
-              status={status}
-              translationData={{ original_language, spoken_languages }}
-              runtime={runtime}
-              budget={budget}
-              revenue={revenue}
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  render() {
+    const {
+      runtime,
+      revenue,
+      budget,
+      profit,
+      genres,
+      movieDetails
+    } = this.props;
+    const {
+      title,
+      release_date,
+      overview,
+      vote_average,
+      poster_path
+    } = movieDetails;
+    const { idioma, situacao } = this.state.translated;
+
+    return (
+      <MovieContainer>
+        <Header>
+          <CustomTitle title={title} darker />
+          <ReleaseYear release_year={release_date} />
+        </Header>
+        <ContentContainer>
+          <InformationContainer>
+            <article>
+              <CustomTitle title="Sinopse" darker hasBorder />
+              <MovieSinopse overview={overview} />
+            </article>
+            <article>
+              <CustomTitle title="Informações" darker hasBorder />
+              <ExtraDetailsContainer>
+                <Item>
+                  <CustomTitle title="Situação" darker /> <p>{situacao}</p>
+                </Item>
+                <Item>
+                  <CustomTitle title="Idioma" darker /> <p>{idioma}</p>
+                </Item>
+                <Item>
+                  <CustomTitle title="Duração" darker /> <p> {runtime}</p>
+                </Item>
+                <Item>
+                  <CustomTitle title="Orçamento" darker /> <p>${budget}</p>
+                </Item>
+                <Item>
+                  <CustomTitle title="Receita" darker /> <p>${revenue}</p>
+                </Item>
+                <Item>
+                  <CustomTitle title="Lucro" darker /> <p>${profit}</p>
+                </Item>
+              </ExtraDetailsContainer>
+            </article>
+            <ExtraContainer>
+              <MovieGenres genre_ids={genres} />
+              <CustomNumber number={vote_average} isVote />
+            </ExtraContainer>
+          </InformationContainer>
+          <ImageContainer>
+            <MoviePoster
+              posterUrl={poster_path}
+              posterSize={posterSizes.medium}
+              title={title}
             />
-          </article>
-          <ExtraContainer>
-            <MovieGenres genre_ids={getGenresIds(genres)} />
-            <CustomNumber number={vote_average} isVote />
-          </ExtraContainer>
-        </InformationContainer>
-        <ImageContainer>
-          <MoviePoster
-            posterUrl={poster_path}
-            posterSize={posterSizes.medium}
-            title={title}
-          />
-        </ImageContainer>
-      </ContentContainer>
-    </MovieContainer>
-  );
-};
+          </ImageContainer>
+        </ContentContainer>
+      </MovieContainer>
+    );
+  }
+}
 
 CardDetails.propTypes = {
   movieDetails: PropTypes.shape({
@@ -87,11 +135,26 @@ CardDetails.propTypes = {
     budget: PropTypes.number,
     revenue: PropTypes.number,
     vote_average: PropTypes.number,
-    poster_path: PropTypes.string,
-    original_language: PropTypes.string,
-    spoken_languages: PropTypes.arrayOf(PropTypes.object),
-    genres: PropTypes.arrayOf(PropTypes.object)
-  }).isRequired
+    poster_path: PropTypes.string
+  }).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.number).isRequired,
+  orignalLanguage: PropTypes.string.isRequired,
+  runtime: PropTypes.string.isRequired,
+  budget: PropTypes.string.isRequired,
+  revenue: PropTypes.string.isRequired,
+  profit: PropTypes.string.isRequired
 };
 
-export default CardDetails;
+const mapStateToProps = state => ({
+  movieDetails: state.movieDetails.data,
+  genres: getGenresIds(state.movieDetails),
+  orignalLanguage: getOriginalLanguage(state.movieDetails.data),
+  runtime: convertToHour(state.movieDetails.data.runtime),
+  budget: makeDecimal(state.movieDetails.data.budget),
+  revenue: makeDecimal(state.movieDetails.data.revenue),
+  profit: makeDecimal(
+    state.movieDetails.data.budget - state.movieDetails.data.revenue
+  )
+});
+
+export default connect(mapStateToProps)(CardDetails);

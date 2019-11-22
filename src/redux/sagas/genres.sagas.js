@@ -12,6 +12,11 @@ export default function* getGenres() {
     );
     yield put(GenresActions.getSuccess(response.data.genres));
   } catch (err) {
-    ErrorActions.setError("Algo deu errado ao buscar pelos gêneros do filme.");
+    yield put(
+      ErrorActions.setError(
+        "Desculpe, algo deve ter acontecido na nave-mãe. Tente novamente, jovem padawan."
+      )
+    );
+    yield put(GenresActions.getError());
   }
 }

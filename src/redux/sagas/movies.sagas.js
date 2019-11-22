@@ -23,10 +23,15 @@ export default function* getMovies(action) {
       ...responseSearch.data.results
     ];
 
-    if (!response.length) throw "Sem resultados";
+    if (!response.length) throw "Algo deu errado";
 
     yield put(MoviesActions.getMovieSuccess(response));
   } catch (err) {
-    ErrorActions.setError("Algo deu errado na busca.");
+    yield put(
+      ErrorActions.setError(
+        "Desculpe, algo deve ter acontecido na nave-mãe. Tente novamente, jovem padawan."
+      )
+    );
+    yield put(MoviesActions.getError());
   }
 }

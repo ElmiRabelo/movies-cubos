@@ -1,6 +1,7 @@
 export const Types = {
   GET_REQUEST: "genres/GET_REQUEST",
-  GET_SUCCESS: "genres/GET_SUCCESS"
+  GET_SUCCESS: "genres/GET_SUCCESS",
+  GET_ERROR: "genres/GET_ERROR"
 };
 
 const INITIAL_STATE = {
@@ -91,6 +92,8 @@ export default function genres(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
     case Types.GET_SUCCESS:
       return { ...state, loading: false, data: action.payload };
+    case Types.GET_ERROR:
+      return { ...state, loading: false };
     default:
       return state;
   }
@@ -98,5 +101,6 @@ export default function genres(state = INITIAL_STATE, action) {
 
 export const Creators = {
   getRequest: () => ({ type: Types.GET_REQUEST }),
-  getSuccess: payload => ({ type: Types.GET_SUCCESS, payload })
+  getSuccess: payload => ({ type: Types.GET_SUCCESS, payload }),
+  getError: () => ({ type: Types.GET_ERROR })
 };

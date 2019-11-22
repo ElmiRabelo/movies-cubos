@@ -18,6 +18,11 @@ export default function* getMovieDetails(action) {
     console.tron.log(data);
     yield put(MovieDetailsActions.getSuccess(response.data));
   } catch (err) {
-    ErrorActions.setError("Algo deu errado ao buscar por detalhes.");
+    yield put(
+      ErrorActions.setError(
+        "Desculpe, algo deve ter acontecido na nave-mãe. Tente novamente, jovem padawan."
+      )
+    );
+    yield put(MovieDetailsActions.getError());
   }
 }

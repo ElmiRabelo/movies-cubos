@@ -2,6 +2,7 @@ import { call, put } from "redux-saga/effects";
 import api from "../../services/api";
 
 import { Creators as GenresActions } from "../ducks/genres.ducks";
+import { Creators as ErrorActions } from "../ducks/error.ducks";
 
 export default function* getGenres() {
   try {
@@ -11,6 +12,6 @@ export default function* getGenres() {
     );
     yield put(GenresActions.getSuccess(response.data.genres));
   } catch (err) {
-    console.tron.log("Algo deu errado", err);
+    ErrorActions.setError("Algo deu errado ao buscar pelos gêneros do filme.");
   }
 }

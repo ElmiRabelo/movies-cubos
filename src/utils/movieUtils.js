@@ -77,9 +77,11 @@ export const makeDecimal = number => {
 };
 
 //obter idioma original em String extendida. ex: en para English
-export const getOriginalLanguage = (original, spokenLanguages) => {
-  const spokenName = spokenLanguages.find(
-    language => original === language.iso_639_1
+
+export const getOriginalLanguage = data => {
+  const originalLanguage = data.original_language;
+  const spokenName = data.spoken_languages.find(
+    language => originalLanguage === language.iso_639_1
   );
   return spokenName.name;
 };

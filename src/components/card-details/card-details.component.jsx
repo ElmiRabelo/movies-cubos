@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { getOriginalLanguage, getGenresIds } from "../../utils/movieUtils";
+import { getGenresIds } from "../../utils/movieUtils";
 import { posterSizes } from "../../utils/imageUtils";
 
 import CustomTitle from "../custom-title/custom-title.component";
@@ -33,8 +33,7 @@ const CardDetails = ({
     revenue,
     vote_average,
     poster_path,
-    original_language,
-    spoken_languages,
+    idioma,
     genres
   }
 }) => {
@@ -54,10 +53,7 @@ const CardDetails = ({
             <CustomTitle title="Informações" darker hasBorder />
             <InformationDetails
               status={status}
-              language={getOriginalLanguage(
-                original_language,
-                spoken_languages
-              )}
+              language={idioma}
               runtime={runtime}
               budget={budget}
               revenue={revenue}

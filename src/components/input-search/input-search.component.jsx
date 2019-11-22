@@ -5,19 +5,30 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as MoviesActions } from "../../redux/ducks/movies.ducks";
 import { Creators as GenresActions } from "../../redux/ducks/genres.ducks";
+import { Creators as ErrorActions } from "../../redux/ducks/error.ducks";
 
 import { convertSearchToGenre } from "../../utils/movieUtils";
 
 import { Container } from "./input-search.styles";
 
 //renderiza o input de busca e é resposavel por fazer o request
-const InputSearch = ({ placeholder, getMovieRequest, genres, getRequest }) => {
+const InputSearch = ({
+  placeholder,
+  getMovieRequest,
+  genres,
+  getRequest,
+  setError
+}) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!inputValue) return;
+    if (!inputValue) {
+      return setError(
+        "É necessário digitar o nome de um filme, ou gênero, jovem padawan."
+      );
+    }
     getRequest();
     //converte o valor de input para um genero e retorna a id desse genero, se for um genero valido.
     const genreId = convertSearchToGenre(inputValue, genres);
@@ -50,6 +61,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...MoviesActions, ...GenresActions }, dispatch);
+  bindActionCreators(
+    { ...MoviesActions, ...GenresActions, ...ErrorActions },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputSearch);

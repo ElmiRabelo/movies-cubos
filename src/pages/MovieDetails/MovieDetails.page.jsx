@@ -52,7 +52,11 @@ MovieDetails.propTypes = {
   getRequest: PropTypes.func.isRequired,
   movieDetails: PropTypes.shape({
     loading: PropTypes.bool,
-    data: PropTypes.object
+    data: PropTypes.shape({
+      videos: PropTypes.shape({
+        results: PropTypes.arrayOf(PropTypes.object)
+      })
+    })
   }).isRequired
 };
 

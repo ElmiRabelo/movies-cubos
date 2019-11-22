@@ -8,14 +8,7 @@ import { makeDecimal, convertToHour } from "../../utils/movieUtils";
 import { Container, Item } from "./information-details.styles";
 
 //reponsavel por renderizar as informações adicionais do filme em detalhes
-const InformationDetails = ({
-  status,
-  language,
-  budget,
-  revenue,
-  runtime,
-  profit
-}) => {
+const InformationDetails = ({ status, language, budget, revenue, runtime }) => {
   const [idioma, setIdioma] = useState("...");
   const [situacao, setSituacao] = useState("...");
   const [orcamento, setOrcamento] = useState("...");

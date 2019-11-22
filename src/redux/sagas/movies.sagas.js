@@ -2,6 +2,7 @@ import { call, put } from "redux-saga/effects";
 import api from "../../services/api";
 
 import { Creators as MoviesActions } from "../ducks/movies.ducks";
+import { Creators as ErrorActions } from "../ducks/error.ducks";
 
 export default function* getMovies(action) {
   try {
@@ -22,8 +23,10 @@ export default function* getMovies(action) {
       ...responseSearch.data.results
     ];
 
+    if (!response.length) throw "Sem resultados";
+
     yield put(MoviesActions.getMovieSuccess(response));
   } catch (err) {
-    console.tron.log("Algo deu errado", err);
+    ErrorActions.setError("Algo deu errado na busca.");
   }
 }

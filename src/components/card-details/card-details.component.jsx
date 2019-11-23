@@ -28,12 +28,12 @@ const CardDetails = ({
     release_date,
     overview,
     status,
+    original_language,
     runtime,
     budget,
     revenue,
     vote_average,
     poster_path,
-    idioma,
     genres
   }
 }) => {
@@ -53,7 +53,7 @@ const CardDetails = ({
             <CustomTitle title="Informações" darker hasBorder />
             <InformationDetails
               status={status}
-              language={idioma}
+              language={original_language}
               runtime={runtime}
               budget={budget}
               revenue={revenue}

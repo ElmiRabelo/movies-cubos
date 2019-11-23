@@ -1,3 +1,5 @@
+import translate from "translate";
+
 // Formata o ano de lançamento provindo da api AAAA/MM/DD para DD/MM/AAAA
 export const formatYear = year => {
   const FormatedYear = year
@@ -79,9 +81,18 @@ export const makeDecimal = number => {
 //obter idioma original em String extendida. ex: en para English
 
 export const getOriginalLanguage = data => {
-  const originalLanguage = data.original_language;
-  const spokenName = data.spoken_languages.find(
-    language => originalLanguage === language.iso_639_1
+  const { original_language, spoken_languages } = data;
+  //pega o codigo de identificação do idioma original. ex:'en'
+  //busca em spoken languages um idioma que tenha o mesmo codigo que o idioma original
+  const fullName = spoken_languages.find(
+    language => original_language === language.iso_639_1
   );
-  return spokenName.name;
+  //retorna o nome do idioma por extenso. Ex: English
+  return fullName.name;
+};
+
+export const translateInformations = texto => {
+  translate.engine = "yandex";
+  translate.key = process.env.REACT_APP_YANDEX_KEY;
+  return translate(texto, { to: "pt" });
 };

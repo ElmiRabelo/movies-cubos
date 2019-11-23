@@ -43,7 +43,7 @@ export const Header = styled.header`
 
     ${NumberContainer} {
       position: absolute;
-      top: 45px;
+      top: 38px;
       left: 15px;
       z-index: 9;
       width: 70px;

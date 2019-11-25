@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { getGenresIds } from "../../utils/movieUtils";
+import {
+  getGenresIds,
+  getOriginalLanguage,
+  translateInformations
+} from "../../utils/movieUtils";
 import { posterSizes } from "../../utils/imageUtils";
 
 import CustomTitle from "../custom-title/custom-title.component";
@@ -22,59 +26,75 @@ import {
 } from "./card-details.styles";
 
 //renderiza um card com com as informações de um filme em detalhes
-const CardDetails = ({
-  movieDetails: {
-    title,
-    release_date,
-    overview,
-    status,
-    original_language,
-    runtime,
-    budget,
-    revenue,
-    vote_average,
-    poster_path,
-    genres
+class CardDetails extends React.Component {
+  _isMounted = false;
+  state = {
+    translated: {}
+  };
+  async componentDidMount() {
+    const language = await getOriginalLanguage(this.props.movieDetails);
+    const idioma = await translateInformations(language);
+    const situacao = await translateInformations(
+      this.props.movieDetails.status
+    );
+    this._isMounted = true;
+    if (this._isMounted) {
+      this.setState({ translated: { idioma, situacao } });
+    }
   }
-}) => {
-  return (
-    <MovieContainer>
-      <Header>
-        <CustomTitle title={title} darker />
-        <ReleaseYear release_year={release_date} />
-      </Header>
-      <ContentContainer>
-        <InformationContainer>
-          <article>
-            <CustomTitle title="Sinopse" darker hasBorder />
-            <MovieSinopse overview={overview} />
-          </article>
-          <article>
-            <CustomTitle title="Informações" darker hasBorder />
-            <InformationDetails
-              status={status}
-              language={original_language}
-              runtime={runtime}
-              budget={budget}
-              revenue={revenue}
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+  render() {
+    const {
+      title,
+      release_date,
+      overview,
+      runtime,
+      budget,
+      revenue,
+      vote_average,
+      poster_path,
+      genres
+    } = this.props.movieDetails;
+    return (
+      <MovieContainer>
+        <Header>
+          <CustomTitle title={title} darker />
+          <ReleaseYear release_year={release_date} />
+        </Header>
+        <ContentContainer>
+          <InformationContainer>
+            <article>
+              <CustomTitle title="Sinopse" darker hasBorder />
+              <MovieSinopse overview={overview} />
+            </article>
+            <article>
+              <CustomTitle title="Informações" darker hasBorder />
+              <InformationDetails
+                translated={this.state.translated}
+                runtime={runtime}
+                budget={budget}
+                revenue={revenue}
+              />
+            </article>
+            <ExtraContainer>
+              <MovieGenres genre_ids={getGenresIds(genres)} />
+              <CustomNumber number={vote_average} isVote />
+            </ExtraContainer>
+          </InformationContainer>
+          <ImageContainer>
+            <MoviePoster
+              posterUrl={poster_path}
+              posterSize={posterSizes.medium}
+              title={title}
             />
-          </article>
-          <ExtraContainer>
-            <MovieGenres genre_ids={getGenresIds(genres)} />
-            <CustomNumber number={vote_average} isVote />
-          </ExtraContainer>
-        </InformationContainer>
-        <ImageContainer>
-          <MoviePoster
-            posterUrl={poster_path}
-            posterSize={posterSizes.medium}
-            title={title}
-          />
-        </ImageContainer>
-      </ContentContainer>
-    </MovieContainer>
-  );
-};
+          </ImageContainer>
+        </ContentContainer>
+      </MovieContainer>
+    );
+  }
+}
 
 CardDetails.propTypes = {
   movieDetails: PropTypes.shape({

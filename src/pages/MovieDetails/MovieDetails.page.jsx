@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 
 //Redux
@@ -12,40 +12,38 @@ import CardDetails from "../../components/card-details/card-details.component";
 import { Container, TrailerContainer } from "./MovieDetails.styles";
 
 //Pagina responsavel por renderizar card-details com informações do filme, como o trailer. é feito o request das informações do filme, obtendo a id do filme atraves da url
-class MovieDetails extends React.Component {
-  componentDidMount() {
-    this.props.getRequest(this.props.match.params.id);
-  }
-  render() {
-    const { videos } = this.props.movieDetails.data;
-    const { loading, data } = this.props.movieDetails;
-    return (
-      <Fragment>
-        {loading ? (
-          <Loading />
-        ) : (
-          <Container>
-            <CardDetails movieDetails={data} />
+const MovieDetails = props => {
+  useEffect(() => {
+    props.getRequest(props.match.params.id);
+  }, []);
+  const { videos } = props.movieDetails.data;
+  const { loading, data } = props.movieDetails;
+  return (
+    <Fragment>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Container>
+          <CardDetails movieDetails={data} />
 
-            {videos.results.length > 0 && (
-              <TrailerContainer>
-                <iframe
-                  title="Movie Trailer"
-                  width="100%"
-                  height="100%"
-                  src={`https://www.youtube.com/embed/${videos.results[0].key}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </TrailerContainer>
-            )}
-          </Container>
-        )}
-      </Fragment>
-    );
-  }
-}
+          {videos.results.length > 0 && (
+            <TrailerContainer>
+              <iframe
+                title="Movie Trailer"
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${videos.results[0].key}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </TrailerContainer>
+          )}
+        </Container>
+      )}
+    </Fragment>
+  );
+};
 
 MovieDetails.propTypes = {
   getRequest: PropTypes.func.isRequired,

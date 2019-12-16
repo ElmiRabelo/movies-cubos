@@ -5,7 +5,7 @@ import { Year } from "../release-year/release-year.styles";
 
 import colors from "../../styles/colors";
 
-export const Container = styled.div`
+export const InformationContainer = styled.div`
   max-height: 100%;
   width: 100%;
   display: flex;

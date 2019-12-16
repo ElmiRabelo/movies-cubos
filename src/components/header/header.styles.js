@@ -10,6 +10,7 @@ export const Container = styled.header`
   min-height: 70px;
   width: 100%;
   background-color: ${colors.primary};
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
   h1 {
     text-align: center;
     font-size: 40px;

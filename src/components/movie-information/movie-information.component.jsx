@@ -9,7 +9,11 @@ import ReleaseYear from "../release-year/release-year.component";
 import CustomNumber from "../custom-number/custom-number.component";
 import CustomTitle from "../custom-title/custom-title.component";
 
-import { Container, Header, Content } from "./movie-information.styles";
+import {
+  InformationContainer,
+  Header,
+  Content
+} from "./movie-information.styles";
 
 const MovieInformation = ({
   id,
@@ -20,7 +24,7 @@ const MovieInformation = ({
   genre_ids
 }) => {
   return (
-    <Container>
+    <InformationContainer>
       <Header>
         <Link to={`/movie/${id}`}>
           <CustomTitle title={title} />
@@ -32,7 +36,7 @@ const MovieInformation = ({
         <MovieSinopse overview={overview} />
         <MovieGenres genre_ids={genre_ids} />
       </Content>
-    </Container>
+    </InformationContainer>
   );
 };
 

@@ -33,8 +33,8 @@ export const convertSearchToGenre = (search, genres) => {
 };
 
 //converte id de genero para o nome(string format)
-export const convertGenreIdToString = (id, state) => {
-  const convertedGenre = state.filter(genre => id === genre.id);
+export const convertGenreIdToString = (id, genres) => {
+  const convertedGenre = genres.filter(genre => id === genre.id);
   return convertedGenre[0].name;
 };
 

@@ -9,13 +9,16 @@ import { convertGenreIdToString } from "../../utils/movieUtils";
 import { GenresContainer } from "./movie-genres.styles";
 
 //responsavel por renderizar uma coleção de genre labels
-const MovieGenres = ({ genre_ids, genres }) => (
-  <GenresContainer>
-    {genre_ids.map(id => (
-      <GenreLabel key={id} genre={convertGenreIdToString(id, genres)} />
-    ))}
-  </GenresContainer>
-);
+const MovieGenres = ({ genre_ids, genres }) => {
+  const genre = genre_ids.map(id => convertGenreIdToString(id, genres));
+  return (
+    <GenresContainer>
+      {genre.map(id => (
+        <GenreLabel key={id} genre={id} />
+      ))}
+    </GenresContainer>
+  );
+};
 
 MovieGenres.propTypes = {
   genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -23,7 +26,7 @@ MovieGenres.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  genres: state.genres.data
+  genres: state.movies.genres
 });
 
 export default connect(mapStateToProps)(MovieGenres);

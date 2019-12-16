@@ -5,14 +5,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as ErrorActions } from "../../redux/ducks/error.ducks";
 
-import { Container } from "./error-box.styles";
+import { ErrorContainer } from "./error-box.styles";
 
 const ErrorBox = ({ error: { visible, message }, hideError }) =>
   visible && (
-    <Container>
+    <ErrorContainer>
       <p>{message}</p>
       <button onClick={hideError}>X</button>
-    </Container>
+    </ErrorContainer>
   );
 
 const mapStateToProps = state => ({

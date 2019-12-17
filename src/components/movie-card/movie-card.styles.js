@@ -18,6 +18,7 @@ export const Container = styled.article`
 
   @media (max-width: 570px) {
     grid-template-columns: 1fr;
+    width: 80%;
     ${InformationContainer} {
       display: none;
     }

@@ -6,4 +6,8 @@ export const Container = styled.div`
   justify-content: space-between;
   height: 100%;
   width: 100%;
+
+  @media (max-width: 570px) {
+    align-items: center;
+  }
 `;

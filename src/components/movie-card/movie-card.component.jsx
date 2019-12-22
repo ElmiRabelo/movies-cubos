@@ -25,6 +25,7 @@ const MovieCard = ({
         posterUrl={poster_path}
         posterSize={posterSizes.medium}
         title={title}
+        id={id}
       />
       <MovieInformation
         id={id}

@@ -2,13 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { getImage } from "../../utils/imageUtils";
+import { Link } from "react-router-dom";
 
 import { PosterContainer } from "./movie-poster.styles";
 
-const MoviePoster = ({ posterUrl, posterSize, title }) => {
+const MoviePoster = ({ posterUrl, posterSize, title, id }) => {
   return (
     <PosterContainer>
-      <img src={getImage(posterSize, posterUrl)} alt={`${title} poster`} />
+      <Link to={`/movie/${id}`}>
+        <img src={getImage(posterSize, posterUrl)} alt={`${title} poster`} />
+      </Link>
     </PosterContainer>
   );
 };

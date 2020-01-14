@@ -14,6 +14,7 @@ export const Container = styled.div`
     font-size: 16px;
     border-radius: 25px;
     background-color: ${colors.greyLight};
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 
     &::placeholder {
       color: ${colors.placeholder};

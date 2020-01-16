@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { posterSizes } from "../../utils/imageUtils";
+//Componentes e Styles
 import MoviePoster from "../movie-poster/movie-poster.component";
 import MovieInformation from "../movie-information/movie-information.component";
-
-import { posterSizes } from "../../utils/imageUtils";
-
 import { Container } from "./movie-card.styles";
 
 const MovieCard = ({

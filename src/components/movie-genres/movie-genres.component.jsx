@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+//Redux and utils
 import { connect } from "react-redux";
-
-import GenreLabel from "../genre-label/genre-label.component";
-
 import { convertGenreIdToString } from "../../utils/movieUtils";
+//Components and Styles
+import GenreLabel from "../genre-label/genre-label.component";
 import { GenresContainer } from "./movie-genres.styles";
 
 //responsavel por renderizar uma coleção de genre labels

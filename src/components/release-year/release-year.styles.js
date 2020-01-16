@@ -4,5 +4,5 @@ import colors from "../../styles/colors";
 
 export const Year = styled.p`
   font-size: 16px;
-  color: ${colors.fade};
+  color: ${colors.dark};
 `;

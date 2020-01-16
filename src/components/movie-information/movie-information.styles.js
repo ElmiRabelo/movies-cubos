@@ -12,6 +12,8 @@ export const InformationContainer = styled.div`
   flex-direction: column;
   position: relative;
   background-color: ${colors.greyLight};
+  border-bottom: 3px solid ${colors.primary};
+  border-right: 3px solid ${colors.primary};
 `;
 
 export const Header = styled.header`

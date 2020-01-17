@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+//Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as PaginationActions } from "../../redux/ducks/pagination.ducks";
-
+//Components and Styles
 import MovieCard from "../movie-card/movie-card.component";
 import Pagination from "../pagination/pagination.component";
 import Loading from "../loading/loading.component";
-
 import { Container } from "./movies-overview.styles";
 
 //reneriza os MovieCards em conjunto com a paginação dos resultados;

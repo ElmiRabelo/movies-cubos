@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+//Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as PaginationActions } from "../../redux/ducks/pagination.ducks";
-
+//Components and Styles
 import CustomNumber from "../custom-number/custom-number.component";
-
 import { Container, PageNumber } from "./pagination.styles";
 
 const Pagination = ({

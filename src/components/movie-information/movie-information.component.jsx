@@ -1,20 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
-
+//Components and Styles
 import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
 import ReleaseYear from "../release-year/release-year.component";
 import CustomNumber from "../custom-number/custom-number.component";
 import CustomTitle from "../custom-title/custom-title.component";
-
 import {
   InformationContainer,
   Header,
   Content
 } from "./movie-information.styles";
 
+//Responsavel por ser o container de componentes relacionandos a informações do filme, como titulo, sinopse, generos
 const MovieInformation = ({
   id,
   title,

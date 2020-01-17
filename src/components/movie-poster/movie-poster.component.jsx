@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { getImage } from "../../utils/imageUtils";
 import { Link } from "react-router-dom";
-
 import { PosterContainer } from "./movie-poster.styles";
 
 const MoviePoster = ({ posterUrl, posterSize, title, id }) => {

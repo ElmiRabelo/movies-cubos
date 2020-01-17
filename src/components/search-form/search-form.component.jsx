@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
 import { Container } from "./search-form.styles";
 
 //renderiza o input de busca - invoca submitHandler, reposanvel por fazer o MoviesRequest

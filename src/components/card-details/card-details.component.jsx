@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-
+//Redux and utils
 import { connect } from "react-redux";
-
 import {
   getGenresIds,
   getOriginalLanguage,
@@ -11,14 +10,13 @@ import {
   convertToHour
 } from "../../utils/movieUtils";
 import { posterSizes } from "../../utils/imageUtils";
-
+//Components and Styles
 import CustomTitle from "../custom-title/custom-title.component";
 import ReleaseYear from "../release-year/release-year.component";
 import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MoviePoster from "../movie-poster/movie-poster.component";
 import CustomNumber from "../custom-number/custom-number.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
-
 import {
   MovieContainer,
   Header,
@@ -32,6 +30,7 @@ import {
 
 //renderiza um card com com as informações de um filme em detalhes
 class CardDetails extends React.Component {
+  //É uma parte do codigo necessária devido a utilização da translate api. Dessa forma não continuará a rodar setState quando o compoente não estiver sendo renderizado.
   _isMounted = false;
   state = {
     translated: {
@@ -39,6 +38,7 @@ class CardDetails extends React.Component {
       situacao: "..."
     }
   };
+
   async componentDidMount() {
     const idioma = await translateInformations(this.props.orignalLanguage);
     const situacao = await translateInformations(
@@ -78,6 +78,7 @@ class CardDetails extends React.Component {
           <CustomTitle title={title} darker />
           <ReleaseYear release_year={release_date} />
         </Header>
+
         <ContentContainer>
           <InformationContainer>
             <article>
@@ -86,6 +87,7 @@ class CardDetails extends React.Component {
             </article>
             <article>
               <CustomTitle title="Informações" darker hasBorder />
+
               <ExtraDetailsContainer>
                 <Item>
                   <CustomTitle title="Situação" darker /> <p>{situacao}</p>
@@ -107,11 +109,13 @@ class CardDetails extends React.Component {
                 </Item>
               </ExtraDetailsContainer>
             </article>
+
             <ExtraContainer>
               <MovieGenres genre_ids={genres} />
               <CustomNumber number={vote_average} isVote />
             </ExtraContainer>
           </InformationContainer>
+
           <ImageContainer>
             <MoviePoster
               posterUrl={poster_path}

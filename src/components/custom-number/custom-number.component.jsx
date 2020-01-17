@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { formatVote } from "../../utils/movieUtils";
 import { NumberContainer, ContentContainer } from "./custom-number.styles";
 

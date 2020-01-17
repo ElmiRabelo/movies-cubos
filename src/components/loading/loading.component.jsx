@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Spinner, Container } from "./loading.styles";
 import LoadingIcon from "../../assets/loading.svg";
 

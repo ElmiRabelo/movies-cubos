@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 import colors from "./colors";
 
@@ -28,4 +28,10 @@ export const GlobalStyle = createGlobalStyle`
       color: ${colors.dark};
     }
   }
+`;
+
+export const Sinopse = styled.p`
+  font-size: 16px;
+  color: ${colors.dark};
+  margin: 20px 0;
 `;

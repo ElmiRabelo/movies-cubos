@@ -63,6 +63,11 @@ export const Content = styled.div`
   background-color: ${colors.greyLight};
   position: relative;
 
+  & > p {
+    color: ${colors.dark};
+    margin: 20px 0;
+  }
+
   ${Year} {
     position: absolute;
     top: 0.1rem;

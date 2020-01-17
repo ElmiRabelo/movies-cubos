@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 import colors from "./colors";
 
@@ -17,6 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Lato', sans-serif;
     color: ${colors.dark};
   }
+  p {
+    font-size: 16px;
+  }
   h1, h2, h3, h4, h5, h6 {
     
     font-family: 'Abel', sans-serif;
@@ -28,10 +31,4 @@ export const GlobalStyle = createGlobalStyle`
       color: ${colors.dark};
     }
   }
-`;
-
-export const Sinopse = styled.p`
-  font-size: 16px;
-  color: ${colors.dark};
-  margin: 20px 0;
 `;

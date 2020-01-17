@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 //Components and Styles
-import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
 import ReleaseYear from "../release-year/release-year.component";
 import CustomNumber from "../custom-number/custom-number.component";
@@ -32,7 +31,7 @@ const MovieInformation = ({
       </Header>
       <Content>
         <ReleaseYear release_year={release_date} />
-        <MovieSinopse overview={overview} />
+        <p>{overview}</p>
         <MovieGenres genre_ids={genre_ids} />
       </Content>
     </InformationContainer>

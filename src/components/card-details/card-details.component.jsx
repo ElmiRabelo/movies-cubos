@@ -13,7 +13,6 @@ import { posterSizes } from "../../utils/imageUtils";
 //Components and Styles
 import CustomTitle from "../custom-title/custom-title.component";
 import ReleaseYear from "../release-year/release-year.component";
-import MovieSinopse from "../movie-sinopse/movie-sinopse.component";
 import MoviePoster from "../movie-poster/movie-poster.component";
 import CustomNumber from "../custom-number/custom-number.component";
 import MovieGenres from "../movie-genres/movie-genres.component";
@@ -83,7 +82,7 @@ class CardDetails extends React.Component {
           <InformationContainer>
             <article>
               <CustomTitle title="Sinopse" darker hasBorder />
-              <MovieSinopse overview={overview} />
+              <p>{overview}</p>
             </article>
             <article>
               <CustomTitle title="Informações" darker hasBorder />

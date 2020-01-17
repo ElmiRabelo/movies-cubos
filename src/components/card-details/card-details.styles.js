@@ -53,6 +53,11 @@ export const InformationContainer = styled.section`
     width: 100%;
     margin-top: 25px;
     padding-right: 10px;
+
+    & > p {
+      color: ${colors.dark};
+      margin: 20px 0;
+    }
   }
 
   @media screen and (min-width: 900px) {

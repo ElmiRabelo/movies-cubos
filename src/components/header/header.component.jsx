@@ -6,8 +6,11 @@ import { Container } from "./header.styles";
 const Header = () => (
   <Container>
     <Link to="/">
-      <CustomTitle title="Movies" fontSize="40px" />
+      <CustomTitle title="BADASS Movies" />
     </Link>
+    <nav>
+      <Link to="/">Search</Link>
+    </nav>
   </Container>
 );
 

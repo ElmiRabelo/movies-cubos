@@ -7,7 +7,7 @@ import { Creators as ErrorActions } from "../ducks/error.ducks";
 export default function* getMovies(action) {
   try {
     const { inputValue, genreId } = action.payload;
-
+    //Fazendo chamadas em paralelo com redux-saga
     const [byTitle, byGenre] = yield all([
       call(
         api.get,
@@ -28,6 +28,5 @@ export default function* getMovies(action) {
         "Desculpe, algo deve ter acontecido na nave-mãe. Tente novamente, jovem padawan."
       )
     );
-    yield put(MoviesActions.getError());
   }
 }

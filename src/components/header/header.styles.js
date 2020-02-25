@@ -10,13 +10,13 @@ export const Container = styled.header`
   padding: 20px 30px;
   min-height: 70px;
   width: 100%;
-  border-bottom: 1px solid ${colors.primary};
-  background-color: ${colors.secondary};
+  border-bottom: 1px solid ${colors.secondary};
+  background-color: ${colors.primary};
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
   h1 {
     text-align: center;
     font-size: 2.1rem;
-    color: ${colors.primary};
+    color: ${colors.secondary};
     letter-spacing: 0.2rem;
     padding-bottom: 0;
     -webkit-font-smoothing: antialiased;
@@ -32,11 +32,11 @@ export const Container = styled.header`
     a:visited,
     a:active {
       font-size: 23px;
-      color: ${colors.dark};
+      color: ${colors.secondary};
       transition-duration: 0.3s;
       &:hover {
         letter-spacing: 0.1rem;
-        color: ${colors.placeholder};
+        color: ${colors.analogus};
       }
     }
   }

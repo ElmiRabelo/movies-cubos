@@ -5,7 +5,11 @@ import { formatYear } from "../../utils/movieUtils";
 import { Year } from "./release-year.styles";
 
 const ReleaseYear = ({ release_year }) => {
-  return <Year>{formatYear(release_year)}</Year>;
+  return release_year ? (
+    <Year>{formatYear(release_year)}</Year>
+  ) : (
+    <Year>Sem data</Year>
+  );
 };
 
 ReleaseYear.propTypes = {

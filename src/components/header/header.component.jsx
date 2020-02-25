@@ -6,7 +6,7 @@ import { Container } from "./header.styles";
 const Header = () => (
   <Container>
     <Link to="/">
-      <CustomTitle title="BADASS Movies" />
+      <CustomTitle title="Movies ao Cubo" />
     </Link>
     <nav>
       <Link to="/">Search</Link>

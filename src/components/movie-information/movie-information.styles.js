@@ -26,6 +26,11 @@ export const Header = styled.header`
   h1 {
     font-size: 24px;
     padding-bottom: 0;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: ${colors.analogus};
+    }
   }
 
   ${NumberContainer} {
